@@ -4,6 +4,10 @@
 - 웹앱 이름 (가칭) : Stock Theory Simulator Lab / Interactive Stock Theory Lab
 - 개요 : 000해커톤 출품을 위한 웹앱 설계
 
+| date | ver. |
+|---|---|
+|25/01/06|1.0.0|
+
 
 ---
 
