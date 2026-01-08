@@ -2,6 +2,8 @@
 
 This document summarizes the project story for the Hackonomics 2026 hackathon. The core goal is understanding, not prediction, by applying finance theories to real market data.
 
+My English is not good. I did my best, but if you find any grammatical errors, I would appreciate it if you could see them as the sweat of Korean college students' hard work.
+
 ## Inspiration
 I am a third-year undergraduate student at Hallym University in South Korea, majoring in Business Administration with double majors in Finance and Big Data. When I studied finance, I focused on formulas and theory from financial engineering, but I struggled to understand how those ideas behave on real data. I believed there were many students like me, so I chose an educational web project to help learners move beyond theory-only study.
 
