@@ -11,6 +11,9 @@
 - The user ticks the theory and presses the run button to simultaneously check the results (graphs/core figures) and easy explanations (step by step, very clear) for each selected theory.
 - In particular, the key is the What-if slider, which experiences "changing the home (parameters) will change the result."
 
-#### +info.
+### +info.
 - (KOR) 본 프로젝트를 설명하는 READ.ME 파일은 KOR/ENG 각각 작성될 예정.
 - (ENG) READ.ME files describing this project will be prepared respectively KOR/ENG.
+
+## ❗ Disclaimer ❗
+Please read the full [Disclaimer](DISCLAIMER.md) before using this project.
