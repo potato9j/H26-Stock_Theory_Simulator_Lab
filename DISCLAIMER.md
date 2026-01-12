@@ -1,4 +1,4 @@
-# Disclaimer & Terms of Use / 면책 조항 및 이용 약관
+# Disclaimer & Terms of Use / 면책 조항 및 이용 약관 (국문/영문)
 
 Last updated: 2026-01-08
 
