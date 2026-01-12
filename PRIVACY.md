@@ -1,4 +1,4 @@
-# Privacy Policy / 개인정보 처리방침
+# Privacy Policy / 개인정보 처리방침 (국문/영문)
 
 Last updated: 2026-01-08
 
