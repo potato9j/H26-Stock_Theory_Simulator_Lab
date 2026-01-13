@@ -3,7 +3,6 @@
 
 ------
 
-# Stock_Theory_Simulator_Lab
 ## Interactive_Stock_Theory_Lab
 ### Introduction (KOR)
 - 목표는 “투자 예측”이 아니라, 실제 해외주식(종목) 가격 데이터를 사용해 다양한 자산가격/주식 이론을 ‘직접 시뮬레이션하고 학습’하게 만드는 금융·경제 문해력 교육용 인터랙티브 웹앱을 만드는 것이다.
