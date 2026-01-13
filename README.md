@@ -1,5 +1,7 @@
 #### 깃허브 클라우드 환경이 아닌, 로컬 환경에서 개발중인 프로젝트로 문서를 제외한 코드 파일은 최종본만 업로드 됩니다.
+#### 실물코드를 업로드함으로써 시행하는 버전관리는 존재하지 않습니다. (project란에 버전관리만 시행)
 #### As a project under development in the local environment, not in the GitHub cloud environment, only the final version of the code file except for documents is uploaded.
+
 
 ------
 
