@@ -35,6 +35,11 @@
 - 확장: 실제 데이터는 크롤링/외부 API로 가져올 수 있도록 구조만 열어둘 것(필수는 아님).
 - 필수 데이터: 일별 종가 (가능하면 배당/분할 조정 종가), 날짜.
 
+<br>
+
+- last updated : 26-01-13
+- not using JSON and CSV (only using real market data base on API) 
+
 ---
 
 ### 메인 사용자 흐름 (UX)
