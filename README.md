@@ -20,5 +20,6 @@
 - (KOR) 본 프로젝트를 설명하는 READ.ME 파일은 KOR/ENG 각각 작성될 예정.
 - (ENG) READ.ME files describing this project will be prepared respectively KOR/ENG.
 
-## ❗ Disclaimer ❗
-Please read the full [Disclaimer](DISCLAIMER.md) before using this project.
+## ❗ Disclaimer ❗Privacy 
+- Please read the full [Disclaimer](DISCLAIMER.md) before using this project.
+- Please read the full [Privacy](PRIVACY.md) before using this project.
