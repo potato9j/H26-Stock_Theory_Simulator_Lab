@@ -34,7 +34,12 @@
 - If possible, avoid using sample data (JSON).
 - Extensions: Only structures should be open (not required) for real data to be imported into crawling/external APIs.
 - Mandatory Data: Daily closing price (dividend/division adjusted closing price if possible), date.
+  
+<br>
 
+- last updated : 26-01-13
+- not using JSON and CSV (only using real market data base on API)
+  
 ---
 
 ### Main User Flow (UX)
