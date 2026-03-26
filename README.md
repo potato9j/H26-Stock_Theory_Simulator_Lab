@@ -2,7 +2,7 @@
 #### 버전관리는 하지 않습니다.
 #### As a project under development in the local environment, not in the GitHub cloud environment, only the final version of the code file except for documents is uploaded.
 
-### 국외 해커톤에 제출하는 작업물로, 해커톤 심사 종료시(26.06)까지 전 코드 비공개
+### 심사 종료시(26.06)까지 전 코드 비공개
 
 ------
 
