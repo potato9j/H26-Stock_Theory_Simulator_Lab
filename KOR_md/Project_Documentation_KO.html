@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html><head><meta charset="utf-8" /><title>Interactive Stock Theory Lab - Project Documentation (Korean)</title>
+<style>
+body { font-family: 'Malgun Gothic', 'Segoe UI', sans-serif; line-height: 1.55; color:#1f2937; margin: 32px; }
+h1,h2,h3 { color:#0f172a; }
+h1 { font-size: 28px; margin-bottom: 6px; }
+h2 { font-size: 21px; margin-top: 26px; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px; }
+h3 { font-size: 17px; margin-top: 16px; }
+p, li { font-size: 12pt; }
+small { color:#6b7280; }
+.code { font-family: Consolas, monospace; background:#f3f4f6; padding: 8px 10px; border-radius: 6px; }
+.table { border-collapse: collapse; width:100%; margin-top: 8px; }
+.table th,.table td { border:1px solid #d1d5db; padding:8px; text-align:left; font-size:11pt; }
+.block { background:#f8fafc; border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; }
+</style></head><body>
+<h1>Interactive Stock Theory Lab</h1>
+<p><b>Hackonomics 2026 최종 프로젝트 설명서 (국문)</b></p>
+<p><small>버전: Final / 작성일: 2026-03-30</small></p>
+<h2>1. 프로젝트 개요</h2>
+<p>Interactive Stock Theory Lab은 해외주식 데이터를 기반으로 금융 이론을 학습할 수 있도록 설계된 교육용 웹 애플리케이션입니다. 핵심 목표는 단기 가격 예측이 아니라, 같은 데이터에서도 이론과 가정에 따라 해석이 달라진다는 점을 사용자에게 체험시키는 것입니다.</p>
+<h2>2. 기획 배경 및 목적</h2>
+<ul><li>금융 이론 학습이 수식 중심으로 고립될 때 발생하는 이해 한계를 완화</li><li>실제 시장 데이터와 이론을 연결해 직관적 학습 경험 제공</li><li>투자 권유가 아닌, 모델 가정/민감도/한계를 비교 학습하는 교육 실험실 구현</li></ul>
+<h2>3. 핵심 가치 제안</h2>
+<ul><li><b>비예측 중심:</b> 본 서비스는 예측 엔진이 아니라 이론 적용 도구입니다.</li><li><b>비교 학습:</b> 이론별 결과를 한 화면에서 비교합니다.</li><li><b>상호작용:</b> What-if 슬라이더로 가정을 바꾸면 결과가 즉시 반영됩니다.</li><li><b>설명 강화:</b> 결과 수치뿐 아니라 "왜 이런 결과가 나왔는지"를 구조적으로 제공합니다.</li></ul>
+<h2>4. 사용자 시나리오</h2>
+<ol><li>사용자가 티커(예: AAPL, MSFT, NVDA, SPY)를 입력</li><li>기간(1M/6M/1Y/3Y/5Y/Custom) 및 이론 선택</li><li>Run 실행 후 데이터 수집/정규화/계산</li><li>비교표 및 이론 카드(지표/그래프/설명/슬라이더) 확인</li><li>가정 변경 후 결과 차이를 재확인</li></ol>
+<h2>5. 구현 이론 (8개)</h2>
+<table class="table"><tr><th>이론</th><th>핵심 산출물</th><th>학습 포인트</th></tr><tr><td>CAPM</td><td>Beta, Required Return, Alpha</td><td>시장 민감도(Beta)가 요구수익률을 어떻게 바꾸는지</td></tr><tr><td>Fama-French 3-Factor</td><td>요인 로딩, 모델 내재 수익률, R²</td><td>시장 외 요인(규모/가치)이 해석에 미치는 영향</td></tr><tr><td>Momentum</td><td>Signal, 전략 수익률, MDD</td><td>추세 지속 구간과 급반전 구간의 성과 차이</td></tr><tr><td>Mean Reversion</td><td>Z-score, 전략 수익률, MDD</td><td>과매수/과매도 가정이 유효한 구간 구분</td></tr><tr><td>Efficient Frontier</td><td>효율적 경계, 최소분산점, 가중치</td><td>분산투자와 위험-수익률 균형 이해</td></tr><tr><td>Risk Metrics</td><td>Volatility, MDD, Recovery</td><td>평균수익률 외 경로위험(Path Risk) 체감</td></tr><tr><td>MA Crossover</td><td>매매 신호, 수익률, Trade Count</td><td>추세장/횡보장에서의 성능 차이</td></tr><tr><td>Volatility Regime</td><td>고변동성 비중, 전략 수익률, MDD</td><td>변동성 레짐 기반 노출 조절 효과</td></tr></table>
+<h2>6. 기술 아키텍처</h2>
+<h3>6.1 Frontend</h3><ul><li>HTML + CSS + JavaScript</li><li>Tailwind CSS(CDN), Chart.js</li><li>카드 기반 반응형 UI</li></ul>
+<h3>6.2 Backend</h3><ul><li>Node.js 내장 http 서버</li><li>API 프록시 엔드포인트: <span class="code">/api/price</span></li><li>Alpha Vantage 호출, 캐시, 레이트리밋 큐 처리</li></ul>
+<h2>7. 데이터 처리 및 계산 파이프라인</h2>
+<ol><li>티커/기간 파라미터 수신</li><li>외부 API 호출(일/주 데이터 자동 선택)</li><li>표준 스키마 정규화: <span class="code">{t,o,h,l,c,v}</span></li><li>수익률/지표/전략/회귀 계산</li><li>비교표 및 차트 렌더링</li><li>슬라이더 입력 시 즉시 재계산/재렌더링</li></ol>
+<h2>8. 프로젝트 구조</h2>
+<div class="block"><pre>hackonomics2026/
+├─ public/
+│  ├─ index.html
+│  ├─ styles.css
+│  └─ js/
+│     ├─ app.js
+│     ├─ api.js
+│     ├─ compute.js
+│     └─ render.js
+├─ server.js
+├─ .env (비공개)
+├─ .env.example
+├─ DISCLAIMER.md
+├─ PRIVACY.md
+├─ Project Story.md
+├─ Project Story.ko.md
+└─ readme.md</pre></div>
+<h2>9. 로컬 실행 방법</h2>
+<ol><li>Node.js 설치 확인 (<span class="code">node -v</span>)</li><li><span class="code">.env</span>에 API 키 설정</li><li><span class="code">node server.js</span> 실행</li><li>브라우저에서 <span class="code">http://localhost:3000</span> 접속</li></ol>
+<h2>10. 결과물 및 해석 방식</h2>
+<ul><li>이론별 KPI 3종 이상 제공</li><li>차트 + 테이블 + 설명문 동시 제공</li><li>설명 구조: 이론 가정 -> 데이터 특징 -> 결과 해석</li><li>민감도 조절로 결론 변화 체험</li></ul>
+<h2>11. 주요 이슈와 해결</h2>
+<ul><li>API 제한: 무료 엔드포인트 중심 폴백 + 호출 간격 제어 + 캐시 적용</li><li>CORS/키 노출: 브라우저 직접 호출 대신 서버 프록시 구조로 전환</li><li>반응형 차트: 컨테이너/축 설정 최적화로 오버플로우 개선</li><li>설명 품질: 초보자 기준의 Why 설명 강화</li></ul>
+<h2>12. 보안/개인정보/법적 고지</h2>
+<ul><li>비밀키는 <span class="code">.env</span>에서 서버 측 관리</li><li>개인정보 정책: <span class="code">PRIVACY.md</span></li><li>면책/이용약관: <span class="code">DISCLAIMER.md</span></li><li>라이선스: MIT License</li></ul>
+<h2>13. 한계와 향후 계획</h2>
+<ul><li>무료 API 플랜의 요청량/속도 한계 존재</li><li>요인 데이터 확장 및 보고서 자동화 기능 추가 예정</li><li>학습 커리큘럼형 콘텐츠와 공유 기능 고도화 예정</li></ul>
+<h2>14. 결론</h2>
+<p>본 프로젝트는 금융이론을 실제 데이터와 연결해 학습 가능성을 높인 실험형 웹앱입니다. 투자 의사결정 도구가 아니라, 이론과 가정의 차이를 체계적으로 이해시키는 교육 플랫폼으로 설계되었습니다.</p>
+</body></html>
