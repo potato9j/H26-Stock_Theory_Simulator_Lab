@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html><head><meta charset="utf-8" /><title>Interactive Stock Theory Lab - Project Documentation (English)</title>
+<style>
+body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.55; color:#1f2937; margin: 32px; }
+h1,h2,h3 { color:#0f172a; }
+h1 { font-size: 28px; margin-bottom: 6px; }
+h2 { font-size: 21px; margin-top: 26px; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px; }
+h3 { font-size: 17px; margin-top: 16px; }
+p, li { font-size: 12pt; }
+small { color:#6b7280; }
+.code { font-family: Consolas, monospace; background:#f3f4f6; padding: 8px 10px; border-radius: 6px; }
+.table { border-collapse: collapse; width:100%; margin-top: 8px; }
+.table th,.table td { border:1px solid #d1d5db; padding:8px; text-align:left; font-size:11pt; }
+.block { background:#f8fafc; border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; }
+</style></head><body>
+<h1>Interactive Stock Theory Lab</h1>
+<p><b>Hackonomics 2026 Final Project Documentation (English)</b></p>
+<p><small>Version: Final / Date: 2026-03-30</small></p>
+<h2>1. Project Overview</h2>
+<p>Interactive Stock Theory Lab is an educational web application that helps users learn finance theories with overseas stock market data. Its core objective is not short-term prediction but demonstrating that the same market data can lead to different conclusions depending on model assumptions.</p>
+<h2>2. Motivation and Objectives</h2>
+<ul><li>Reduce learning barriers when finance is studied only through formulas</li><li>Connect real market behavior to theoretical frameworks</li><li>Build an educational lab for assumptions, sensitivity, and model interpretation rather than investment recommendation</li></ul>
+<h2>3. Core Value Proposition</h2>
+<ul><li><b>Non-predictive design:</b> A theory application tool, not a prediction engine</li><li><b>Comparative learning:</b> Multiple theories compared on one screen</li><li><b>Interactive analysis:</b> What-if controls update outcomes instantly</li><li><b>Explainability:</b> Structured "why this happened" interpretation per theory</li></ul>
+<h2>4. User Flow</h2>
+<ol><li>User enters a ticker (e.g., AAPL, MSFT, NVDA, SPY)</li><li>User selects period (1M/6M/1Y/3Y/5Y/Custom) and theories</li><li>User runs analysis and data is fetched/normalized/computed</li><li>User reviews comparison table and theory cards</li><li>User changes assumptions via sliders and observes differences</li></ol>
+<h2>5. Implemented Theories (8)</h2>
+<table class="table"><tr><th>Theory</th><th>Main Outputs</th><th>Learning Point</th></tr><tr><td>CAPM</td><td>Beta, Required Return, Alpha</td><td>How market sensitivity changes required return</td></tr><tr><td>Fama-French 3-Factor</td><td>Factor loadings, implied return, R²</td><td>How multi-factor exposure changes interpretation</td></tr><tr><td>Momentum</td><td>Signal, strategy return, MDD</td><td>Trend persistence versus reversal risk</td></tr><tr><td>Mean Reversion</td><td>Z-score, strategy return, MDD</td><td>Overshoot/reversion behavior across regimes</td></tr><tr><td>Efficient Frontier</td><td>Frontier, min-variance point, weights</td><td>Diversification and risk-return tradeoff</td></tr><tr><td>Risk Metrics</td><td>Volatility, MDD, recovery</td><td>Path-risk beyond average return</td></tr><tr><td>MA Crossover</td><td>Signals, return, trade count</td><td>Trend vs sideways-market performance</td></tr><tr><td>Volatility Regime</td><td>High-vol share, return, MDD</td><td>Exposure control under uncertainty regimes</td></tr></table>
+<h2>6. Technical Architecture</h2>
+<h3>6.1 Frontend</h3><ul><li>HTML + CSS + JavaScript</li><li>Tailwind CSS (CDN), Chart.js</li><li>Card-based responsive UI</li></ul>
+<h3>6.2 Backend</h3><ul><li>Node.js built-in HTTP server</li><li>Proxy endpoint: <span class="code">/api/price</span></li><li>Alpha Vantage integration, in-memory cache, request queue throttling</li></ul>
+<h2>7. Data and Computation Pipeline</h2>
+<ol><li>Receive ticker/range parameters</li><li>Call external API (daily/weekly auto-selection)</li><li>Normalize to <span class="code">{t,o,h,l,c,v}</span></li><li>Compute returns, regression, strategy, and risk metrics</li><li>Render comparison table and charts</li><li>Recompute instantly on what-if control changes</li></ol>
+<h2>8. Project Structure</h2>
+<div class="block"><pre>hackonomics2026/
+├─ public/
+│  ├─ index.html
+│  ├─ styles.css
+│  └─ js/
+│     ├─ app.js
+│     ├─ api.js
+│     ├─ compute.js
+│     └─ render.js
+├─ server.js
+├─ .env (private)
+├─ .env.example
+├─ DISCLAIMER.md
+├─ PRIVACY.md
+├─ Project Story.md
+├─ Project Story.ko.md
+└─ readme.md</pre></div>
+<h2>9. Local Run Guide</h2>
+<ol><li>Confirm Node.js installation (<span class="code">node -v</span>)</li><li>Set API key in <span class="code">.env</span></li><li>Run <span class="code">node server.js</span></li><li>Open <span class="code">http://localhost:3000</span> in browser</li></ol>
+<h2>10. Output and Interpretation</h2>
+<ul><li>At least three KPIs per selected theory</li><li>Charts + tables + explanation text shown together</li><li>Interpretation pattern: assumption -> observed feature -> output meaning</li><li>Sensitivity controls to show assumption-driven conclusion changes</li></ul>
+<h2>11. Challenges and Resolutions</h2>
+<ul><li>API limits: free-endpoint fallback, throttling, and cache strategy</li><li>CORS/key exposure: server-side proxy architecture</li><li>Responsive chart overflow: chart container and axis/tick tuning</li><li>Explanation quality: improved beginner-friendly “why” narratives</li></ul>
+<h2>12. Security, Privacy, and Legal Notice</h2>
+<ul><li>Secrets managed server-side in <span class="code">.env</span></li><li>Privacy scope and policy documented in <span class="code">PRIVACY.md</span></li><li>Disclaimer and terms documented in <span class="code">DISCLAIMER.md</span></li><li>License: MIT</li></ul>
+<h2>13. Limitations and Next Steps</h2>
+<ul><li>Free API plan constraints can affect throughput and latency</li><li>Planned expansion of factor sources and strategy configurations</li><li>Planned report export/sharing and structured learning modules</li></ul>
+<h2>14. Conclusion</h2>
+<p>This project increases practical understanding of finance theories by mapping them to real market behavior. It is intentionally designed as an educational interpretation platform, not an investment decision engine.</p>
+</body></html>
