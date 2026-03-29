@@ -1,8 +1,6 @@
-#### 로컬 환경에서 개발중인 프로젝트로 본 레포에 작업물이 실시간으로 반영되지 않습니다.
-#### 버전관리는 하지 않습니다.
 #### As a project under development in the local environment, not in the GitHub cloud environment, only the final version of the code file except for documents is uploaded.
 
-### 심사 종료시(26.06)까지 전 코드 비공개
+### Third Info. [README.md]
 
 ------
 
