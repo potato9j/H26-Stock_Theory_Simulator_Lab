@@ -1,0 +1,137 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Stock Theory Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="min-h-screen">
+  <header class="max-w-7xl mx-auto px-5 pt-10 pb-6">
+    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div>
+        <h1 class="text-3xl md:text-4xl font-bold" style="font-family: 'Fraunces', serif;">
+          Interactive Stock Theory Lab
+        </h1>
+        <div class="text-sm md:text-base uppercase tracking-widest text-gray-400 mt-2">Real Market Data Learning Lab</div>
+      </div>
+      <button id="aboutBtn" class="chip px-4 py-2 rounded-xl text-sm font-semibold hover:border-yellow-300">About</button>
+    </div>
+    <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="card p-4">
+        <div class="text-xs uppercase tracking-widest text-gray-400 mb-2">Purpose</div>
+        <div class="text-sm text-gray-300 space-y-2">
+          <div>This app helps you learn finance theories by applying them to real market data.</div>
+          <div>It is not a simple prediction model; it is an educational web lab that visualizes investment theories.</div>
+        </div>
+      </div>
+      <div class="card p-4">
+        <div class="text-xs uppercase tracking-widest text-gray-400 mb-2">How to Use</div>
+        <div class="text-sm text-gray-300 space-y-1">
+          <div>1) Type a ticker symbol</div>
+          <div>2) Choose theories to compare</div>
+          <div>3) Run and explore results, assumptions, and what-if controls</div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-4 text-sm md:text-base text-gray-300">
+      Educational use only. No prediction or investment advice.
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-5 pb-16 space-y-6">
+    <section class="card p-5">
+      <div class="bubble p-4">
+        <div class="text-xs uppercase tracking-widest text-gray-400">Chat in here</div>
+        <div class="mt-3 flex flex-col md:flex-row gap-3 items-stretch">
+          <div class="flex-1 bg-gray-900 rounded-xl px-4 py-3 border border-gray-700">
+            <label class="text-xs text-gray-400">Ticker</label>
+            <input id="tickerInput" class="w-full bg-transparent outline-none text-lg" placeholder="Enter a US stock ticker (e.g., AAPL, MSFT)" />
+          </div>
+          <button id="runBtn" class="btn-accent font-semibold rounded-xl px-6 py-3 shadow-lg">Run</button>
+        </div>
+      </div>
+
+      <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="card p-4">
+          <div class="text-sm text-gray-300 mb-2">Period</div>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" class="period-btn chip px-3 py-1 rounded-lg text-sm period-active" data-range="1Y">1Y</button>
+            <button type="button" class="period-btn chip px-3 py-1 rounded-lg text-sm" data-range="1M">1M</button>
+            <button type="button" class="period-btn chip px-3 py-1 rounded-lg text-sm" data-range="6M">6M</button>
+            <button type="button" class="period-btn chip px-3 py-1 rounded-lg text-sm" data-range="3Y">3Y</button>
+            <button type="button" class="period-btn chip px-3 py-1 rounded-lg text-sm" data-range="5Y">5Y</button>
+          </div>
+          <div class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <input id="customStart" type="date" class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm w-full h-10" />
+            <input id="customEnd" type="date" class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm w-full h-10" />
+            <button type="button" id="customApply" class="chip px-3 py-2 rounded-lg text-sm w-full h-10">Custom</button>
+          </div>
+        </div>
+
+        <div class="card p-4">
+          <div class="text-sm text-gray-300 mb-2">Theory Selection</div>
+          <div id="theoryList" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs"></div>
+        </div>
+      </div>
+
+      <div id="errorBox" class="mt-4 hidden text-sm text-red-300 bg-red-900 bg-opacity-30 border border-red-800 rounded-lg p-3"></div>
+
+    </section>
+
+    <section id="results" class="hidden space-y-6">
+      <div class="card p-5 fade-in">
+        <h2 class="text-lg font-semibold mb-3">Comparison Table</h2>
+        <div id="comparisonTable" class="text-sm text-gray-200"></div>
+      </div>
+
+      <div id="theoryCards" class="space-y-6"></div>
+    </section>
+  </main>
+
+  <div id="aboutModal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-60 px-4 z-50">
+    <div class="card w-full max-w-2xl p-6">
+      <div class="flex items-start justify-between gap-3">
+        <h2 class="text-lg font-semibold">Developer & Stack</h2>
+        <button id="aboutClose" class="chip px-3 py-1 rounded-lg text-sm">Close</button>
+      </div>
+      <div class="mt-4 space-y-4 text-sm text-gray-300">
+        <div>
+          <div class="text-xs uppercase tracking-widest text-gray-400 mb-2">Developer Information</div>
+          <div>Github: potato9j (馬濠模喇)</div>
+          <div>Developer country: South Korea</div>
+          <div>Developer name: Jeong Wook, LEE</div>
+          <div>Developer organization: (Korea) Hallym University, management student 3 grade</div>
+          <div class="text-xs text-gray-500 mt-2">No additional technical support due to the entries of the competition.</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-widest text-gray-400 mb-2">Stack</div>
+          <div>Frontend: HTML, Tailwind CSS (CDN), Chart.js</div>
+          <div>Backend: Node.js (HTTP server), Alpha Vantage API proxy</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-widest text-gray-400 mb-2">Copyright</div>
+          <div>All copyrights of this project belong to Jeong Wook Lee.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+  <footer class="text-center text-xs text-gray-500 mt-10 mb-4">
+    <p>
+      Interactive Stock Theory Lab 使 2026 Jeongwook Lee.
+      <br>
+      This project is for <strong>educational purposes only</strong>.
+      <a href="https://github.com/potato9j/H26-Stock_Theory_Simulator_Lab/blob/main/DISCLAIMER.md" target="_blank" class="underline hover:text-gray-300">
+        Disclaimer & Terms
+      </a>
+    </p>
+  </footer>
+</body>
+</html>
